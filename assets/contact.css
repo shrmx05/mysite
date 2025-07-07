@@ -1,0 +1,135 @@
+/* === Body Layout === */
+body.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: #000;
+  font-family: 'Work Sans', sans-serif;
+  color: #aaffffcc;
+}
+
+/* === Fixed Header === */
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1.2rem 2rem;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #00ffee;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  box-shadow: 0 0 8px #00ffee88;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 999;
+}
+header.site-header .page-path {
+  font-size: 1rem;
+  color: #00ffee99;
+}
+
+/* === Contact/Blog Page Card === */
+main.page {
+  max-width: 700px;
+  margin: 6rem auto 3rem;
+  padding: 2rem 2.5rem;
+  background: rgba(18, 18, 18, 0.9);
+  border-radius: 10px;
+  font-family: 'Work Sans', sans-serif;
+  color: #aaffffcc;
+  text-align: center;
+  box-shadow: 0 0 20px #00ffee22;
+}
+
+/* Headings */
+main.page h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 2.6rem;
+  margin-bottom: 1.5rem;
+  color: #00ffee;
+  text-shadow: 0 0 8px #00ffeebb;
+}
+
+/* Paragraphs */
+main.page p {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* === Footer === */
+footer.footer {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  padding: 0 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  color: #00ffee99;
+  margin-top: auto;
+}
+
+footer.footer a {
+  color: #00ffee;
+  text-decoration: none;
+  font-weight: 600;
+}
+footer.footer a:hover {
+  color: #ff2c2c;
+}
+
+.footer-right a {
+  margin-left: 1rem;
+  font-size: 1.3rem;
+  color: #aaffffcc;
+  transition: color 0.3s ease;
+}
+.footer-right a:hover {
+  color: #ff2c2c;
+}
+
+/* === Music Button === */
+#play-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #00ffee;
+  font-size: 1.5rem;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.3s ease;
+  user-select: none;
+  margin-top: 1rem;
+}
+#play-toggle-btn:hover {
+  color: #ff2c2c;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  main.page {
+    margin: 5rem 1rem 2rem;
+    padding: 1.5rem;
+  }
+  header.site-header {
+    padding: 1rem 1.5rem;
+    font-size: 1.3rem;
+  }
+  footer.footer {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1.5rem;
+    font-size: 0.85rem;
+  }
+  .footer-right a {
+    margin-left: 0.8rem;
+    font-size: 1.1rem;
+  }
+}

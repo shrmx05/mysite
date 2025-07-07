@@ -1,0 +1,119 @@
+/* === Home Page Layout === */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+/* === Title Card === */
+.card {
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid #00ffee44;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 30px #00ffee22;
+  max-width: 420px;
+  width: 100%;
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+/* === Animated Background Glow === */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  width: 380px;
+  height: 380px;
+  background: conic-gradient(from 90deg, #00ffee44, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(30px);
+  animation: rotate-glow 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate-glow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* === Typing Effect === */
+h2 {
+  font-family: 'Lora', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00ffee;
+  text-shadow: 0 0 4px #00ffee, 0 0 10px #0ff;
+}
+
+.tagline {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #aaffff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.cursor {
+  color: #00ffee;
+  font-weight: bold;
+}
+
+/* === Section Navigation Links === */
+.section-link {
+  margin: 0.5rem 0;
+  padding: 0.6rem 1rem;
+  background: rgba(0, 255, 238, 0.15);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+.section-link:hover {
+  background: #000;
+}
+.section-link a {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+.section-link a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #ff2c2c;
+}
+
+/* === Music Toggle Button === */
+#play-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #00ffee;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+#play-toggle-btn:hover {
+  color: #ff2c2c;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+  .buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .buttons a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}

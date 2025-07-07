@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>shrmx.exe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Playfair+Display:wght@600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/home.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link rel="icon" href="assets/favicon.png" />
+
+  <script src="assets/custom.js" defer></script>
+</head>
+<body class="landing">
+  <div class="grid-loop"></div>
+
+  <div class="card">
+    <audio id="bg-music"></audio>
+
+    <h2>shrmx.exe</h2>
+    <p class="tagline"><span class="typing-text"></span><span class="cursor">|</span></p>
+
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/shriram-sahoo-95502a340/" target="_blank" rel="noopener noreferrer"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <a href="https://github.com/shrmx05" target="_blank" rel="noopener noreferrer"
+        ><i class="fab fa-github"></i
+      ></a>
+      <a href="https://instagram.com/shrmx_official" target="_blank" rel="noopener noreferrer"
+        ><i class="fab fa-instagram"></i
+      ></a>
+    </div>
+
+    <div class="section-link"><a href="projects.html">Projects</a></div>
+    <div class="section-link"><a href="blogs.html">Blogs</a></div>
+    <div class="section-link"><a href="puzzles.html">Puzzles</a></div>
+    <div class="section-link"><a href="music.html">Music</a></div>
+    <div class="section-link"><a href="contact.html">Contact</a></div>
+
+  </div>
+
+  <script>
+    
+    // Typing effect
+    const roles = [
+      "quant.", "music.", "puzzles.", "debating.", "fitness.",
+      "blogs.", "math.", "cricket.", "creator.", "food.",
+      "cinema.", "physics.","cars.","travel.","parkour.","photography."
+    ];
+
+    const typingEl = document.querySelector(".typing-text");
+    const cursorEl = document.querySelector(".cursor");
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let typing = true;
+
+    function typeLoop() {
+      if (!typingEl) return;
+
+      if (typing) {
+        if (charIndex < roles[roleIndex].length) {
+          typingEl.textContent += roles[roleIndex].charAt(charIndex++);
+          setTimeout(typeLoop, 100);
+        } else {
+          typing = false;
+          setTimeout(typeLoop, 1300);
+        }
+      } else {
+        if (charIndex > 0) {
+          typingEl.textContent = roles[roleIndex].substring(0, --charIndex);
+          setTimeout(typeLoop, 50);
+        } else {
+          typing = true;
+          roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(typeLoop, 500);
+        }
+      }
+    }
+
+    window.addEventListener("load", typeLoop);
+  </script>
+</body>
+</html>
