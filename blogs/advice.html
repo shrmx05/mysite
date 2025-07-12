@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>shrmx.exe / Blogs / advice</title>
+
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="stylesheet" href="../assets/contact.css" />
+  <link rel="icon" href="../assets/favicon.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&family=Lora:wght@500;600&family=Playfair+Display:wght@600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <script src="../assets/custom.js" defer></script>
+
+  <style>
+    /* Force header font consistent with blogs.html */
+header.site-header {
+  font-family: 'Lora', serif !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  color: #00ffee !important;
+  user-select: none !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  width: 100% !important;
+  box-shadow: 0 0 8px #00ffee88 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  z-index: 999 !important;
+}
+header.site-header a {
+  font-family: 'Lora', serif !important;
+  font-weight: 700 !important;
+  color: #00ffee !important;
+  text-decoration: none !important;
+}
+header.site-header a:hover {
+  color: #ff2c2c !important;
+  text-decoration: none !important;
+}
+header.site-header .page-path {
+  font-family: 'Lora', serif !important;
+  font-weight: 600 !important;
+  color: #00ffeeaa;
+  user-select: none;
+}
+
+
+    main.page {
+      max-width: 800px;
+      margin: 6rem auto 3rem;
+      padding: 0 2rem;
+      background: none;
+      border-radius: 0;
+      text-align: left;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      margin-bottom: 1.2rem;
+      color: #00ffee;
+      text-shadow: 0 0 6px #00ffee99;
+       text-align: center;
+    }
+
+    .blurb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .blurb {
+      padding: 1rem 0;
+      border-left: 3px dashed #00ffee44;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .blurb::before {
+      content: "✦";
+      position: absolute;
+      left: -1.2rem;
+      top: 0.2rem;
+      color: #ff2c2c;
+      font-size: 1.2rem;
+    }
+
+    .blurb h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #ffcccc;
+      margin-bottom: 0.4rem;
+    }
+
+    .blurb .date {
+      font-size: 0.9rem;
+      color: #00ffee88;
+      margin-bottom: 0.8rem;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    .blurb p {
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: #aaffffcc;
+      font-family: 'Lora', serif;
+      text-indent: 1rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 4rem;
+      color: #00ffee;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Lora', serif;
+    }
+
+    .back-link:hover {
+      color: #ff2c2c;
+      text-decoration: underline;
+    }
+
+    .site-header .page-path a {
+      color: #00ffeeaa;
+      text-decoration: none;
+    }
+
+    .site-header .page-path a:hover {
+      color: #ff2c2c;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.3rem;
+      }
+
+      .blurb h2 {
+        font-size: 1.5rem;
+      }
+
+      .blurb p {
+        font-size: 1rem;
+        text-indent: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="landing">
+  <header class="site-header">
+    <a href="../index.html" class="site-name">shrmx.exe</a>
+    <span class="page-path"> / <a href="../blogs.html">Blogs</a> / advice</span>
+  </header>
+
+  <main class="page">
+    <h1>advice</h1>
+
+    <div class="blurb-list">
+
+      <div class="blurb">
+        <h2>My First Internship Meltdown</h2>
+        <div class="date">Jan 2024</div>
+        <p>
+          I thought I was ready for industry. Then I accidentally pushed to production at 3 AM, nuked our test pipeline, and learned how engineers actually handle chaos. A deep dive into growing through failure.
+        </p>
+      </div>
+
+      <div class="blurb">
+        <h2>Hacking a Hackathon</h2>
+        <div class="date">Oct 2023</div>
+        <p>
+          It was meant to be a fun college hackathon. 36 hours later, we were demoing to investors. Here's how we bent the rules (and maybe time) to build something real in a fake startup competition.
+        </p>
+      </div>
+
+      <div class="blurb">
+        <h2>The First Time I Said No</h2>
+        <div class="date">Aug 2023</div>
+        <p>
+          Everyone says “learn to say no.” But it took burning out in a high-stakes research project to actually do it. This one's about reclaiming sanity — and realizing you don’t owe anyone your time.
+        </p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-left">
+      Copyright © 2025 <a href="../index.html">shrmx</a>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.linkedin.com/in/shriram-sahoo-95502a340/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/shrmx05" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://instagram.com/shrmx_official" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+</body>
+</html>
