@@ -19,139 +19,110 @@
   <script src="../assets/custom.js" defer></script>
 
   <style>
-    /* Force header font consistent with blogs.html */
+/* Header */
 header.site-header {
-  font-family: 'Lora', serif !important;
-  font-weight: 700 !important;
-  font-size: 1.5rem !important;
-  color: #00ffee !important;
-  user-select: none !important;
-  background: rgba(0, 0, 0, 0.8) !important;
-  width: 100% !important;
-  box-shadow: 0 0 8px #00ffee88 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  z-index: 999 !important;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #00ffee;
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 8px #00ffee88;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  z-index: 999;
 }
 header.site-header a {
-  font-family: 'Lora', serif !important;
-  font-weight: 700 !important;
-  color: #00ffee !important;
-  text-decoration: none !important;
+  color: #00ffee;
+  text-decoration: none;
 }
 header.site-header a:hover {
-  color: #ff2c2c !important;
-  text-decoration: none !important;
+  color: #ff2c2c;
 }
 header.site-header .page-path {
-  font-family: 'Lora', serif !important;
-  font-weight: 600 !important;
+  font-weight: 600;
   color: #00ffeeaa;
-  user-select: none;
 }
 
+/* Main content */
+main.page {
+  max-width: 900px;
+  margin: 5rem auto 3rem;
+  padding: 0 1.5rem;
+}
 
-    main.page {
-      max-width: 800px;
-      margin: 6rem auto 3rem;
-      padding: 0 2rem;
-      background: none;
-      border-radius: 0;
-      text-align: left;
-    }
+/* Title */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  text-align: center;
+  color: #00ffee;
+  text-shadow: 0 0 6px #00ffee99;
+  margin-bottom: 2rem;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
-      margin-bottom: 1.2rem;
-      color: #00ffee;
-      text-shadow: 0 0 6px #00ffee99;
-       text-align: center;
-    }
+/* Blog cards */
+.blurb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
-    .blurb-list {
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-    }
+.blurb {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #00ffee33;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.blurb:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 12px #00ffee55;
+}
 
-    .blurb {
-      padding: 1rem 0;
-      border-left: 3px dashed #00ffee44;
-      padding-left: 1.2rem;
-      position: relative;
-    }
+.blurb h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #ffcccc;
+  margin-bottom: 0.3rem;
+}
+.blurb .date {
+  font-size: 0.9rem;
+  color: #00ffeeaa;
+  margin-bottom: 1rem;
+  font-family: 'Work Sans', sans-serif;
+}
+.blurb p {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #aaffffcc;
+  font-family: 'Lora', serif;
+}
 
-    .blurb::before {
-      content: "✦";
-      position: absolute;
-      left: -1.2rem;
-      top: 0.2rem;
-      color: #ff2c2c;
-      font-size: 1.2rem;
-    }
+/* Back link */
+.back-link {
+  display: inline-block;
+  margin-top: 3rem;
+  color: #00ffee;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: 'Lora', serif;
+}
+.back-link:hover {
+  color: #ff2c2c;
+  text-decoration: underline;
+}
 
-    .blurb h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: #ffcccc;
-      margin-bottom: 0.4rem;
-    }
-
-    .blurb .date {
-      font-size: 0.9rem;
-      color: #00ffee88;
-      margin-bottom: 0.8rem;
-      font-family: 'Work Sans', sans-serif;
-    }
-
-    .blurb p {
-      font-size: 1.1rem;
-      line-height: 1.65;
-      color: #aaffffcc;
-      font-family: 'Lora', serif;
-      text-indent: 1rem;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 4rem;
-      color: #00ffee;
-      font-weight: 600;
-      text-decoration: none;
-      font-family: 'Lora', serif;
-    }
-
-    .back-link:hover {
-      color: #ff2c2c;
-      text-decoration: underline;
-    }
-
-    .site-header .page-path a {
-      color: #00ffeeaa;
-      text-decoration: none;
-    }
-
-    .site-header .page-path a:hover {
-      color: #ff2c2c;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.3rem;
-      }
-
-      .blurb h2 {
-        font-size: 1.5rem;
-      }
-
-      .blurb p {
-        font-size: 1rem;
-        text-indent: 0.5rem;
-      }
-    }
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  .blurb h2 {
+    font-size: 1.5rem;
+  }
+}
   </style>
 </head>
 <body class="landing">
@@ -164,33 +135,18 @@ header.site-header .page-path {
     <h1>Experiences</h1>
 
     <div class="blurb-list">
-
       <div class="blurb">
-        <h2>My First Internship Meltdown</h2>
-        <div class="date">Jan 2024</div>
+        <h2>intern szn</h2>
+        <div class="date">Aug 2025</div>
         <p>
-          I thought I was ready for industry. Then I accidentally pushed to production at 3 AM, nuked our test pipeline, and learned how engineers actually handle chaos. A deep dive into growing through failure.
+          hi
         </p>
       </div>
 
-      <div class="blurb">
-        <h2>Hacking a Hackathon</h2>
-        <div class="date">Oct 2023</div>
-        <p>
-          It was meant to be a fun college hackathon. 36 hours later, we were demoing to investors. Here's how we bent the rules (and maybe time) to build something real in a fake startup competition.
-        </p>
-      </div>
-
-      <div class="blurb">
-        <h2>The First Time I Said No</h2>
-        <div class="date">Aug 2023</div>
-        <p>
-          Everyone says “learn to say no.” But it took burning out in a high-stakes research project to actually do it. This one's about reclaiming sanity — and realizing you don’t owe anyone your time.
-        </p>
-      </div>
-
+      
     </div>
 
+    <a href="../blogs.html" class="back-link">← Back to Blogs</a>
   </main>
 
   <footer class="footer">
