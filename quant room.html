@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Professional Quiz App</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #000;
+  --card-bg: rgba(18, 18, 18, 0.9);
+  --accent: #00ffee;
+  --accent-hover: #ff2c2c;
+  --correct: #43c770;
+  --incorrect: #e74c4c;
+  --radius: 12px;
+  --shadow: 0 4px 30px rgba(0,255,238,0.3);
+   --font-body: 'Work Sans', sans-serif; /* changed from Lora */
+  --font-heading: 'Lora', serif; /* keep headings as is */
+}
+
+/* Body & layout */
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: #aaffffcc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5rem; /* space for fixed header */
+}
+
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 0;
+  background: rgba(0,0,0,0.85);
+  color: var(--accent);
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;  /* center the text */
+  box-shadow: 0 0 8px var(--accent);
+  z-index: 999;
+}
+
+
+footer.footer {
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto 1rem auto; /* center horizontally and add spacing */
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center; /* center content */
+  align-items: center;
+  gap: 1rem; /* space between items */
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(0,255,238,0.6);
+}
+footer.footer a { 
+  color: var(--accent); 
+  text-decoration: none; 
+  font-weight: 600; 
+}
+footer.footer a:hover { color: var(--accent-hover); }
+
+
+/* Quiz Card */
+.quiz-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 2rem 2.5rem;
+  max-width: 450px;
+  width: 100%;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid rgba(0,255,238,0.3);
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+}
+.quiz-card:hover { box-shadow: 0 8px 40px rgba(0,255,238,0.5); }
+
+/* Quiz Header & Labels */
+.quiz-header, .part-label, .question-count {
+  text-align: center;
+}
+.quiz-header {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.4;
+}
+.part-label {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.question-count { font-size: 1rem; color: #aaffff88; }
+
+/* Quiz Text Styling */
+.quiz-question, .instructions, .quiz-options {
+  font-family: var(--font-body);
+  color: #aaffffcc;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Quiz Options */
+.quiz-options { display:flex; flex-direction: column; gap:0.75rem; }
+.option-btn {
+  background: rgba(50,50,50,0.8); 
+  border:2px solid transparent;
+  border-radius:8px;
+  padding:0.75rem 1rem; 
+  font-size:1rem; 
+  cursor:pointer; 
+  transition:0.2s; 
+  text-align:left; 
+  outline:none;
+  color: #fff;
+}
+.option-btn:hover { border-color: var(--accent-hover); background: rgba(40,40,40,0.9); }
+.option-btn.selected { border-color: var(--accent-hover); }
+.option-btn.correct { border-color: var(--correct); color: var(--correct);}
+.option-btn.incorrect { border-color: var(--incorrect); color: var(--incorrect);}
+.fill-input { 
+  padding:0.75rem; font-size:1rem; border-radius:8px; border:2px solid #555; 
+  outline:none; width:100%; background: rgba(40,40,40,0.8); color:#fff;
+}
+.fill-input.correct { border-color: var(--correct); }
+.fill-input.incorrect { border-color: var(--incorrect); }
+
+/* Quiz Footer */
+.quiz-footer { display:flex; justify-content:space-between; align-items:center; margin-top:1rem; }
+.score { font-weight:600; color: var(--accent);}
+.next-btn,.restart-btn { background: var(--accent); color:#000; border:none; border-radius:8px; padding:0.6rem 1.2rem;font-family: 'Work Sans', sans-serif;  font-size:1rem; cursor:pointer; font-weight:500; transition:0.2s; }
+.next-btn:hover,.restart-btn:hover { background: var(--accent-hover); }
+.next-btn:disabled { background: #444; cursor:not-allowed; }
+.result { text-align:center; font-size:1.3rem; font-weight:600; color: var(--accent);}
+.timer { font-weight:600; margin-right:10px; color: var(--accent);}
+
+/* Responsive */
+@media (max-width:600px){ 
+  .quiz-card{ padding:1rem; max-width:98vw;} 
+  .quiz-header{ font-size:1.3rem;} 
+  .option-btn{ font-size:0.95rem;font-family: 'Work Sans', sans-serif;  padding:0.6rem 0.8rem; } 
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  IQF's QUANT ROOM
+</header>
+
+<div id="app"></div>
+
+<footer class="footer">
+  <div class="footer-left">Copyright © 2025 <a href="index.html">shrmx</a></div>
+  <div class="footer-right">
+    <a href="https://www.linkedin.com/in/shriram-sahoo-95502a340/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/shrmx05" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://instagram.com/shrmx_official" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<script>
+
+const questions = [
+  // Part 1
+  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of exactly 1?",options:["4.69","3.33","3.98","5.43"],answer:0,time:90},
+  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of at most 1?",options:["Buy at 3.25","Sell at 3.25"],answer:0,time:90},
+  {question:"What is the expected number of rolls to get three consecutive rolls with the two pairs of consecutive having an absolute difference of at most 1?",options:["8.22","11.67","6.11","12.43"],answer:0,time:90},
+// Part 2
+  {question:"E1=Expected number of times a 6-sided die must be rolled to get consecutively '6,6'; E2=Expected number of times a 6-sided die must be rolled to get consecutively '6,5'. Which is greater?",options:["E1 > E2","E2 > E1","E1 = E2"],answer:0,time:20},
+  {question:"What is the expected number of rolls to get six consecutive rolls as 1,2,3,4,5,6 (in that order).",options:["388","279936","46792","2328"],answer:0,time:30},
+  {question:"What is the expected number of rolls to get six consecutive rolls as any permutation of 6.",options:["83.18","64.80","192.40","51.18"],answer:0,time:30},
+// Part 3
+  { question: "What is the expected number of rolls to roll each number at least thrice?", 
+    options: ["44.10","32.68","26.42","46.22"], answer: 0, time: 60 },
+  { question: "What is the expected number of rolls until some number appears thrice?", 
+    options: ["9.21","3.77","7.28","11.22"], answer: 2, time: 60 },
+
+  // Part 4
+  { question: "Estimate the probability of getting at least 1000 sixes in 6000 rolls.", 
+    options: ["0.5188","0.5344","0.6122","0.5531"], answer: 0, time:30 },
+  { question: "Estimate the probability of getting exactly 1000 sixes in 6000 rolls.", 
+    options: ["0.05","0.15","0.10","0.20"], answer: 0, time: 30 },
+
+  // Part 5
+  { question: "You keep summing up rolls until you reach a number in 3 digits. What is the expected value you stop at?", 
+    options: ["101.66","102.33","103.33","102.66"], answer: 0, time: 60 },
+  { question: "What is the probability that the pre-threshold sum was 97?", 
+    options: ["0.19","0.166","0.12","0.24"], answer: 0, time: 45 },
+  { question: "Given that you hit exactly 100, what is the probability your total at your second last throw is 94?", 
+    options: ["0.1666","0.12","0.19","0.24"], answer: 0, time: 45 },
+  { question: "What is the most likely pre-pre final sum?", 
+    options: ["94","93","95","96"], answer: 0, time: 90 },
+  { question: "You make a market on the pre-pre final sum with your friend. You both can’t pick the same number, whoever is closer wins a payout (0 if both are equidistant). What should you pick?", 
+    options: ["95","94","97","93"], answer: 0, time: 90 },
+
+  // Part 6 (integer fill type questions can be open-ended or choose closest)
+  { question: "You start with an initial amount 10. You continuously roll a die , if it's odd you lose an amount equivalent to the roll and if it's even you gain that much.After 5 rolls, what is the probability you earn money?", 
+    options: ["0.60","0.90","0.80","0.99"], answer: 0, time: 60 },
+  { question: "After 10 rolls, what is the probability you earn money?", 
+    options: ["0.64","0.999","0.99","0.90"], answer: 0, time: 30 },
+  { question: "After 100 rolls, what is the probability you earn money?", 
+    options: ["0.90","0.99","0.999","0.70"], answer: 0, time: 30 },
+{ question: "If at any point you go into debt, you lose. What is the probability you lose within 5 rolls?", 
+  options: ["0.10","0.05","0.01","0.30"], answer: 0, time: 30 },
+
+{ question: "If at any point you go into debt, you lose. What is the probability you lose within 10 rolls?", 
+  options: ["0.20","0.05","0.08","0.12"], answer: 0, time: 30 },
+
+{ question: "If at any point you go into debt, you lose. What is the probability you lose within 100 rolls?", 
+  options: ["0.42","0.60","0.27","0.21"], answer: 0, time: 30 },
+
+  // Part 7
+  { question: "If you roll 2 red dice and 6 blue dice, what is the probability there is a common face?", 
+    options: ["0.83","0.33","0.67","0.52"], answer: 0, time: 30 },
+  { question: "If you roll 2 red dice and 4 blue dice, what is the probability there is a common face?", 
+    options: ["0.70","0.5","0.6","0.4"], answer: 0, time: 30 },
+  { question: "If you roll 3 red dice and 6 blue dice, what is the probability there is a common face?", 
+    options: ["0.92","0.5","0.84","0.75"], answer: 0, time:  30 },
+  { question: "If you roll 2 red dice (7-sided) and 6 blue dice (7-sided), what is the probability there is a common face?", 
+    options: ["0.78","0.83","0.52","0.61"], answer: 0, time: 30 },
+
+  // Part 8 (some open-ended integer/decimal)
+  { question: "Two players, Tara and Kishore, have a 30-side and 20-side dice, respectively. Each player rolls their dice and the player with the highest roll wins (Kishore also wins in the event of a tie). The loser of the game pays the winner an amount equivalent to the value of the winner's dice roll.If Kishore can re-roll the dice before Tara's dice is unveiled. What is the minimum roll Kishore will keep under optimal play?"
+, options: ["15","14","13","16"], answer: 0, time: 600 },
+  { question: "Suppose we play a game with a die where we roll and sum our rolls. We can stop any time, and the sum is our score. However, if our sum is ever a multiple of 10, our score is zero, and our game is over. Under optimal play, estimate the greatest expected score ?", options: ["5-10","10-15","15-20","20-25"], answer: 1, time: 30 },
+  { question: "Come up with the ideal strategy and use a computer to find the exact expected value (up to 2 decimal places).",options:[],  answer:13.22,tolerance:0.05,time: 900},
+  { question: "You roll a dice three times. Your payout is a three digit number formed by your rolls . After each roll you can choose to place it at any of the (hundreds/tens/ones digit). What is the expected payout under optimal play?",options:[], answer:504,tolerance:0.05,time: 900},
+
+  // Part 9
+  { question: "You play an evenly matched (first to 21 points (no deuce)) badminton match. What is the expected margin of victory?", 
+    options: ["5.15","2.23","1.14","3.03"], answer: 0, time: 90 },
+  { question: "You play a biased (0.7-0.3) badminton match (first to 21 points (no deuce)). What is the expected margin of victory?", 
+    options: ["12","9","15","13"], answer: 0, time: 60 },
+  { question: "You play a biased (0.6-0.4) badminton match (first to 21 points, no deuce). What is the expected margin of victory?", 
+  options: ["7.02","7.58","6.58","11.21"], answer: 1, time: 60},
+  { question: "You play a biased (0.6-0.4) badminton match (first to 21 points, no deuce). What is the probability of winning for the better player?", 
+  options: ["0.8","0.7","0.9","0.99"], answer: 2, time: 60 },
+
+  // Part 10
+  { question: "The value of a game is the maximum of the three rolled dice. What is the expected value of this game?", options:["4.95","4.32","4.11","5.34"], answer:0, time:30 },
+  { question: "The price to play the game is 4. An oracle can tip you off the sum of the dice, how much are you willing to pay for this intel?", options:["0.15","0.05","0.30","0.40"], answer:0, time:120 },
+  { question: " A choice market is available at 4. An oracle can tip you off the sum of the dice, how much are you willing to pay for this intel?", options:["0.27","0.19","0.42","0.63"], answer:0, time:480}
+];
+
+// Parts definition
+const parts = [
+  {start:0,end:2,name:"Look Closely"},
+  {start:3,end:5,name:"Everyone is Invited"},
+  {start:6,end:7,name:"Lucky Threes"},
+  {start:8,end:9,name:"Surely Expected"},
+  {start:10,end:14,name:"Threshold Sums"},
+  {start:15,end:20,name:"Optiveryrisky rolls"},
+  {start:21,end:24, name:"Common Intuition"},
+  {start:25,end:25, name:"Help the Mallu"},
+  {start:26,end:27, name:"8.5'sonlyseason"},
+  {start:28,end:28,name:"3 good decisions"},
+  {start:29,end:32,name:"Sus Baddy"},
+  {start:33,end:35,name:"Where is my Quantitative?"}
+];
+
+const app = document.getElementById('app');
+let current=0, score=0, answered=false, selected=null, timer=null;
+
+function showStartPage(){
+  app.innerHTML=`
+    <div class="quiz-card">
+      <div class="quiz-header">How should you use this Quant Room?</div>
+      <div class="quiz-question">
+        <p>This test aims to test your quantitative aptitude. Many quant firms (mostly international) have been increasingly gearing their quant tests away from routine mathematics and exhaustive puzzles towards testing the ability of candidates to recognise patterns and make conclusions in open ended familiar probabilistic sample spaces (eg. dice, cards etc). Almost simluating the idea of creating a basic alpha to make a conclusion about the "market" or making relevant assumptions and simplifications in order to make certain estimates. </p>
+        <p>This test generally aims to test this very ability of making quick decisions under pressure taking a little inspiration from my experience in a few quant firms' tests (Eg: Optiver, WorldQuant, Da Vinci etc.) but also the occasional rigor. </p>
+        <p> This isn't a collection of obscure random events where I test your raw intuition. The problems are carefully curated to allow atleast a one intuitive method to make an estimate. I would advise you to take note of the options in front of you and target your ideas into choosing between them. I say this because it may not be fruitful to actually try raw estimate X under time constraints but you can create a hypothesis to figure out if X is more likely to be A or B. </p>
+
+
+        <ul>
+          <li>There are 12 parts , if you answer any question incorrectly the rest of the questions of that part are skipped. </li>
+          <li>Attempt the test well rested, trust your instincts and be alert! </li>
+          <li>Don't stress over not doing well. Try put yourself on the spot more often to think organically towards open ended problems. </li>
+          <li>Tinker over the problems but not to the extent you are simply familiarising yourself (or recalling results) with the distributions of a die or card. </li>
+        </ul>
+
+      </div>
+      <button class="restart-btn">Start Quiz</button>
+    </div>
+  `;
+  document.querySelector('.restart-btn').onclick=startQuiz;
+}
+
+function startQuiz(){ current=0; score=0; answered=false; selected=null; renderQuestion(); }
+
+function startTimer(){
+  let remaining = questions[current].time || 15;
+  const footer = document.querySelector('.quiz-footer');
+  let timerSpan = footer.querySelector('.timer');
+  if(!timerSpan){
+    timerSpan = document.createElement('span');
+    timerSpan.className='timer';
+    footer.insertBefore(timerSpan, footer.firstChild);
+  }
+  updateTimerColor(timerSpan, remaining);
+  timerSpan.textContent = `Time: ${remaining}s`;
+  timer = setInterval(()=>{
+    remaining--;
+    timerSpan.textContent = `Time: ${remaining}s`;
+    updateTimerColor(timerSpan, remaining);
+    if(remaining<=0){ clearInterval(timer); handleTimeout(); }
+  },1000);
+}
+
+function updateTimerColor(span, remaining){
+  if(remaining<=3) span.style.color='red';
+  else if(remaining<=5) span.style.color='orange';
+  else span.style.color='var(--primary)';
+}
+
+function handleTimeout(){ answered=true; goToNextPart(); }
+
+function goToNextPart(){
+  const partIndex = parts.findIndex(p=>current>=p.start && current<=p.end);
+  if(partIndex<parts.length-1){
+    current = parts[partIndex+1].start; answered=false; selected=null; renderQuestion();
+  }else renderResult();
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function renderQuestion(){
+  const q = questions[current];
+  let options = [];
+  if (q.options.length > 0) {
+    // Multiple-choice
+    options = shuffleArray(q.options.map((opt,i)=>({text:opt, idx:i})));
+    const correctIndex = options.findIndex(o => o.idx === q.answer);
+    q._shuffledAnswer = correctIndex;
+  }
+
+  // Determine current part
+  const partIndex = parts.findIndex(p => current >= p.start && current <= p.end);
+  const partLabel = parts[partIndex] ? parts[partIndex].name : `Part ${partIndex + 1}`;
+
+  app.innerHTML=`
+    <div class="quiz-card">
+      <div class="part-label" style="text-align:center;">${partLabel}</div>
+      <div class="question-count" style="text-align:center;">Question ${current+1} of ${questions.length}</div>
+      <div class="quiz-question"><span>${q.question}</span></div>
+      <div class="quiz-options">
+        ${
+          q.options.length > 0
+          ? options.map((opt,i)=>`<button class="option-btn" data-idx="${i}">${opt.text}</button>`).join('')
+          : `<input type="number" class="fill-input" id="fillInput" placeholder="Enter answer" step="any">
+             <button class="next-btn" id="submitNum">Submit</button>`
+        }
+      </div>
+      <div class="quiz-footer">
+        <span class="score">Score: ${score}</span>
+        ${q.options.length > 0 ? `<button class="next-btn" disabled>Next</button>` : ``}
+      </div>
+    </div>
+  `;
+
+  if (q.options.length > 0) {
+    document.querySelectorAll('.option-btn').forEach(btn=>btn.onclick=handleOption);
+    document.querySelector('.next-btn').onclick=handleNext;
+  } else {
+    document.getElementById("submitNum").onclick = () => {
+      const val = parseFloat(document.getElementById("fillInput").value);
+      handleFillAnswer(val);
+    };
+  }
+
+  clearInterval(timer);
+  startTimer();
+}
+
+
+
+function handleOption(e){
+  if(answered) return;
+  clearInterval(timer);
+  const idx=Number(e.target.dataset.idx); selected=idx; answered=true;
+  const q=questions[current];
+  document.querySelectorAll('.option-btn').forEach((btn,i)=>{
+    btn.classList.remove('selected');
+    if(i===idx) btn.classList.add('selected');
+    if(q.answer!==null){
+      if(i===q._shuffledAnswer) btn.classList.add('correct');
+      if(i===idx && idx!==q._shuffledAnswer) btn.classList.add('incorrect');
+    }
+  });
+  if(q.answer!==null && idx===q._shuffledAnswer){ score++; document.querySelector('.next-btn').disabled=false; }
+  else goToNextPart();
+}
+
+function handleFillAnswer(value){
+  clearInterval(timer);
+  answered=true;
+  const q=questions[current];
+  const userAnswer=parseFloat(value);
+  let correct=false;
+  if(q.answer!==null && !isNaN(userAnswer)){
+    const tol = q.tolerance || 0;
+    correct = Math.abs(userAnswer - q.answer)<=tol;
+    if(correct) score++;
+  }
+  const input=document.querySelector('.fill-input');
+  input.classList.add(correct?'correct':'incorrect');
+  setTimeout(handleNext,500);
+}
+
+function handleNext(){ current++; answered=false; selected=null; if(current<questions.length) renderQuestion(); else renderResult(); }
+
+function renderResult(){
+  clearInterval(timer);
+  app.innerHTML=`
+    <div class="quiz-card">
+      <div class="result">
+        Quiz Complete!<br>
+        Your Score: <span style="color:var(--accent)">${score} / ${questions.filter(q=>q.answer!==null).length}</span>
+      </div>
+      <button class="restart-btn">Restart Quiz</button>
+    </div>
+  `;
+  document.querySelector('.restart-btn').onclick=showStartPage;
+}
+
+showStartPage();
+</script>
+</body>
+</html>
