@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Professional Quiz App</title>
+<title>IQF's Quant Room</title>
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
@@ -180,67 +180,67 @@ footer.footer a:hover { color: var(--accent-hover); }
 
 const questions = [
   // Part 1
-  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of exactly 1?",options:["4.69","3.33","3.98","5.43"],answer:0,time:90},
-  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of at most 1?",options:["Buy at 3.25","Sell at 3.25"],answer:0,time:90},
-  {question:"What is the expected number of rolls to get three consecutive rolls with the two pairs of consecutive having an absolute difference of at most 1?",options:["8.22","11.67","6.11","12.43"],answer:0,time:90},
+  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of exactly 1?",options:["4.69","3.33","3.98","5.43"],answer:0,time:150},
+  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of at most 1?",options:["Buy at 3.25","Sell at 3.25"],answer:0,time:150},
+  {question:"What is the expected number of rolls to get three consecutive rolls with the two pairs of consecutive having an absolute difference of at most 1?",options:["8.22","11.67","6.11","12.43"],answer:0,time:150},
 // Part 2
   {question:"E1=Expected number of times a 6-sided die must be rolled to get consecutively '6,6'; E2=Expected number of times a 6-sided die must be rolled to get consecutively '6,5'. Which is greater?",options:["E1 > E2","E2 > E1","E1 = E2"],answer:0,time:20},
-  {question:"What is the expected number of rolls to get six consecutive rolls as 1,2,3,4,5,6 (in that order).",options:["388","279936","46792","2328"],answer:0,time:30},
-  {question:"What is the expected number of rolls to get six consecutive rolls as any permutation of 6.",options:["83.18","64.80","192.40","51.18"],answer:0,time:30},
+  {question:"What is the expected number of rolls to get six consecutive rolls as 1,2,3,4,5,6 (in that order).",options:["388","279936","46792","2328"],answer:0,time:60},
+  {question:"What is the expected number of rolls to get six consecutive rolls as any permutation of 6.",options:["83.18","64.80","192.40","51.18"],answer:0,time:60},
 // Part 3
   { question: "What is the expected number of rolls to roll each number at least thrice?", 
-    options: ["44.10","32.68","26.42","46.22"], answer: 0, time: 60 },
+    options: ["44.10","32.68","26.42","46.22"], answer: 0, time: 120 },
   { question: "What is the expected number of rolls until some number appears thrice?", 
-    options: ["9.21","3.77","7.28","11.22"], answer: 2, time: 60 },
+    options: ["9.21","3.77","7.28","11.22"], answer: 2, time: 120 },
 
   // Part 4
   { question: "Estimate the probability of getting at least 1000 sixes in 6000 rolls.", 
-    options: ["0.5188","0.5344","0.6122","0.5531"], answer: 0, time:30 },
+    options: ["0.5188","0.5344","0.6122","0.5531"], answer: 0, time:60 },
   { question: "Estimate the probability of getting exactly 1000 sixes in 6000 rolls.", 
-    options: ["0.05","0.15","0.10","0.20"], answer: 0, time: 30 },
+    options: ["0.05","0.15","0.10","0.20"], answer: 0, time: 60 },
 
   // Part 5
   { question: "You keep summing up rolls until you reach a number in 3 digits. What is the expected value you stop at?", 
-    options: ["101.66","102.33","103.33","102.66"], answer: 0, time: 60 },
+    options: ["101.66","102.33","103.33","102.66"], answer: 0, time: 120 },
   { question: "What is the probability that the pre-threshold sum was 97?", 
-    options: ["0.19","0.166","0.12","0.24"], answer: 0, time: 45 },
+    options: ["0.19","0.166","0.12","0.24"], answer: 0, time: 60 },
   { question: "Given that you hit exactly 100, what is the probability your total at your second last throw is 94?", 
-    options: ["0.1666","0.12","0.19","0.24"], answer: 0, time: 45 },
+    options: ["0.1666","0.12","0.19","0.24"], answer: 0, time: 60 },
   { question: "What is the most likely pre-pre final sum?", 
-    options: ["94","93","95","96"], answer: 0, time: 90 },
+    options: ["94","93","95","96"], answer: 0, time: 120 },
   { question: "You make a market on the pre-pre final sum with your friend. You both can’t pick the same number, whoever is closer wins a payout (0 if both are equidistant). What should you pick?", 
-    options: ["95","94","97","93"], answer: 0, time: 90 },
+    options: ["95","94","97","93"], answer: 0, time: 120 },
 
   // Part 6 (integer fill type questions can be open-ended or choose closest)
   { question: "You start with an initial amount 10. You continuously roll a die , if it's odd you lose an amount equivalent to the roll and if it's even you gain that much.After 5 rolls, what is the probability you earn money?", 
-    options: ["0.60","0.90","0.80","0.99"], answer: 0, time: 60 },
+    options: ["0.60","0.90","0.80","0.99"], answer: 0, time: 120 },
   { question: "After 10 rolls, what is the probability you earn money?", 
-    options: ["0.64","0.999","0.99","0.90"], answer: 0, time: 30 },
+    options: ["0.64","0.999","0.99","0.90"], answer: 0, time: 60 },
   { question: "After 100 rolls, what is the probability you earn money?", 
-    options: ["0.90","0.99","0.999","0.70"], answer: 0, time: 30 },
+    options: ["0.90","0.99","0.999","0.70"], answer: 0, time: 60 },
 { question: "If at any point you go into debt, you lose. What is the probability you lose within 5 rolls?", 
-  options: ["0.10","0.05","0.01","0.30"], answer: 0, time: 30 },
+  options: ["0.10","0.05","0.01","0.30"], answer: 0, time: 60 },
 
 { question: "If at any point you go into debt, you lose. What is the probability you lose within 10 rolls?", 
-  options: ["0.20","0.05","0.08","0.12"], answer: 0, time: 30 },
+  options: ["0.20","0.05","0.08","0.12"], answer: 0, time: 60 },
 
 { question: "If at any point you go into debt, you lose. What is the probability you lose within 100 rolls?", 
-  options: ["0.42","0.60","0.27","0.21"], answer: 0, time: 30 },
+  options: ["0.42","0.60","0.27","0.21"], answer: 0, time: 60 },
 
   // Part 7
   { question: "If you roll 2 red dice and 6 blue dice, what is the probability there is a common face?", 
-    options: ["0.83","0.33","0.67","0.52"], answer: 0, time: 30 },
+    options: ["0.83","0.33","0.67","0.52"], answer: 0, time: 45 },
   { question: "If you roll 2 red dice and 4 blue dice, what is the probability there is a common face?", 
-    options: ["0.70","0.5","0.6","0.4"], answer: 0, time: 30 },
+    options: ["0.70","0.5","0.6","0.4"], answer: 0, time: 45 },
   { question: "If you roll 3 red dice and 6 blue dice, what is the probability there is a common face?", 
-    options: ["0.92","0.5","0.84","0.75"], answer: 0, time:  30 },
+    options: ["0.92","0.5","0.84","0.75"], answer: 0, time:  45 },
   { question: "If you roll 2 red dice (7-sided) and 6 blue dice (7-sided), what is the probability there is a common face?", 
-    options: ["0.78","0.83","0.52","0.61"], answer: 0, time: 30 },
+    options: ["0.78","0.83","0.52","0.61"], answer: 0, time: 45 },
 
   // Part 8 (some open-ended integer/decimal)
   { question: "Two players, Tara and Kishore, have a 30-side and 20-side dice, respectively. Each player rolls their dice and the player with the highest roll wins (Kishore also wins in the event of a tie). The loser of the game pays the winner an amount equivalent to the value of the winner's dice roll.If Kishore can re-roll the dice before Tara's dice is unveiled. What is the minimum roll Kishore will keep under optimal play?"
 , options: ["15","14","13","16"], answer: 0, time: 600 },
-  { question: "Suppose we play a game with a die where we roll and sum our rolls. We can stop any time, and the sum is our score. However, if our sum is ever a multiple of 10, our score is zero, and our game is over. Under optimal play, estimate the greatest expected score ?", options: ["5-10","10-15","15-20","20-25"], answer: 1, time: 30 },
+  { question: "Suppose we play a game with a die where we roll and sum our rolls. We can stop any time, and the sum is our score. However, if our sum is ever a multiple of 10, our score is zero, and our game is over. Under optimal play, estimate the greatest expected score ?", options: ["5-10","10-15","15-20","20-25"], answer: 1, time: 120 },
   { question: "Come up with the ideal strategy and use a computer to find the exact expected value (up to 2 decimal places).",options:[],  answer:13.22,tolerance:0.05,time: 900},
   { question: "You roll a dice three times. Your payout is a three digit number formed by your rolls . After each roll you can choose to place it at any of the (hundreds/tens/ones digit). What is the expected payout under optimal play?",options:[], answer:504,tolerance:0.05,time: 900},
 
@@ -255,7 +255,7 @@ const questions = [
   options: ["0.8","0.7","0.9","0.99"], answer: 2, time: 60 },
 
   // Part 10
-  { question: "The value of a game is the maximum of the three rolled dice. What is the expected value of this game?", options:["4.95","4.32","4.11","5.34"], answer:0, time:30 },
+  { question: "The value of a game is the maximum of the three rolled dice. What is the expected value of this game?", options:["4.95","4.32","4.11","5.34"], answer:0, time:45 },
   { question: "The price to play the game is 4. An oracle can tip you off the sum of the dice, how much are you willing to pay for this intel?", options:["0.15","0.05","0.30","0.40"], answer:0, time:120 },
   { question: " A choice market is available at 4. An oracle can tip you off the sum of the dice, how much are you willing to pay for this intel?", options:["0.27","0.19","0.42","0.63"], answer:0, time:480}
 ];
