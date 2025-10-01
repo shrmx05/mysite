@@ -180,24 +180,24 @@ footer.footer a:hover { color: var(--accent-hover); }
 
 const questions = [
   // Part 1
-  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of exactly 1?",options:["4.69","3.33","3.98","5.43"],answer:0,time:150},
-  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of at most 1?",options:["Buy at 3.25","Sell at 3.25"],answer:0,time:150},
-  {question:"What is the expected number of rolls to get three consecutive rolls with the two pairs of consecutive having an absolute difference of at most 1?",options:["8.22","11.67","6.11","12.43"],answer:0,time:150},
+  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of exactly 1?",options:["4.69","3.33","3.98","5.43"],answer:0,time:180},
+  {question:"What is the expected number of rolls to get two consecutive rolls with an absolute difference of at most 1?",options:["Buy at 3.25","Sell at 3.25"],answer:0,time:180},
+  {question:"What is the expected number of rolls to get three consecutive rolls with the two pairs of consecutive having an absolute difference of at most 1?",options:["8.22","11.67","6.11","12.43"],answer:0,time:180},
 // Part 2
-  {question:"E1=Expected number of times a 6-sided die must be rolled to get consecutively '6,6'; E2=Expected number of times a 6-sided die must be rolled to get consecutively '6,5'. Which is greater?",options:["E1 > E2","E2 > E1","E1 = E2"],answer:0,time:20},
-  {question:"What is the expected number of rolls to get six consecutive rolls as 1,2,3,4,5,6 (in that order).",options:["388","279936","46792","2328"],answer:0,time:60},
-  {question:"What is the expected number of rolls to get six consecutive rolls as any permutation of 6.",options:["83.18","64.80","192.40","51.18"],answer:0,time:60},
+  {question:"E1=Expected number of times a 6-sided die must be rolled to get consecutively '6,6'; E2=Expected number of times a 6-sided die must be rolled to get consecutively '6,5'. Which is greater?",options:["E1 > E2","E2 > E1","E1 = E2"],answer:0,time:30},
+  {question:"What is the expected number of rolls to get six consecutive rolls as 1,2,3,4,5,6 (in that order).",options:["388","279936","46792","2328"],answer:0,time:80},
+  {question:"What is the expected number of rolls to get six consecutive rolls as any permutation of 6.",options:["83.18","64.80","192.40","51.18"],answer:0,time:80},
 // Part 3
   { question: "What is the expected number of rolls to roll each number at least thrice?", 
-    options: ["44.10","32.68","26.42","46.22"], answer: 0, time: 120 },
+    options: ["44.10","32.68","26.42","46.22"], answer: 0, time: 135 },
   { question: "What is the expected number of rolls until some number appears thrice?", 
-    options: ["9.21","3.77","7.28","11.22"], answer: 2, time: 120 },
+    options: ["9.21","3.77","7.28","11.22"], answer: 2, time: 135 },
 
   // Part 4
   { question: "Estimate the probability of getting at least 1000 sixes in 6000 rolls.", 
-    options: ["0.5188","0.5344","0.6122","0.5531"], answer: 0, time:60 },
+    options: ["0.5188","0.5344","0.6122","0.5531"], answer: 0, time:70 },
   { question: "Estimate the probability of getting exactly 1000 sixes in 6000 rolls.", 
-    options: ["0.05","0.15","0.10","0.20"], answer: 0, time: 60 },
+    options: ["0.05","0.15","0.10","0.20"], answer: 0, time:70 },
 
   // Part 5
   { question: "You keep summing up rolls until you reach a number in 3 digits. What is the expected value you stop at?", 
@@ -207,9 +207,9 @@ const questions = [
   { question: "Given that you hit exactly 100, what is the probability your total at your second last throw is 94?", 
     options: ["0.1666","0.12","0.19","0.24"], answer: 0, time: 60 },
   { question: "What is the most likely pre-pre final sum?", 
-    options: ["94","93","95","96"], answer: 0, time: 120 },
+    options: ["94","93","95","96"], answer: 0, time: 180 },
   { question: "You make a market on the pre-pre final sum with your friend. You both can’t pick the same number, whoever is closer wins a payout (0 if both are equidistant). What should you pick?", 
-    options: ["95","94","97","93"], answer: 0, time: 120 },
+    options: ["95","94","97","93"], answer: 0, time: 180 },
 
   // Part 6 (integer fill type questions can be open-ended or choose closest)
   { question: "You start with an initial amount 10. You continuously roll a die , if it's odd you lose an amount equivalent to the roll and if it's even you gain that much.After 5 rolls, what is the probability you earn money?", 
